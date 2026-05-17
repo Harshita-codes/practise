@@ -1,0 +1,25 @@
+{
+  "name": "tranzita",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "��#\u0000 \u0000p\u0000r\u0000a\u0000c\u0000t\u0000i\u0000s\u0000e\u0000h\u0000g\u0000f\u0000g\u0000h\u0000d\u0000f\u0000s\u0000t\u0000d\u0000y\u0000r\u0000f\u0000h\u0000\r\u0000 \u0000",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Harshita-codes/practise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Harshita-codes/practise/issues"
+  },
+  "homepage": "https://github.com/Harshita-codes/practise#readme"
+}

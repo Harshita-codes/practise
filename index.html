@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Password vault</title></head>
+    <body>
+        <h2>Password vault</h2>
+
+        <input id="site" placeholder="Site (e.g. gmail.com)" />
+        <input id="username" placeholder="Username" />
+        <input id="password" placeholder="Password" />
+        <button onclick="addItem()">Add</button>
+
+        <ul id="list"></ul>
+
+        <script>
+            const BASE='http://localhost:3000/vault';
+
+            async function load() {
+                const res= await fetch(BASE);
+                const data=await res.json();
+                document.getElementById('list').innerHTML=
+                data.map(item=>`
+                <li>
+                    ${item.site} | ${item.username} | ${item.password}
+                    <button onclick="editItem(${item.id})">Edit</button>
+                    <button onclick="deleteItem(${item.id})">Delete</button>
+                </li>
+                `).join('');
+            }
+
+            async function addItem() {
+                const body= {
+                    site:document.getElementById('site').value,
+                    username:document.getElementById('username').value,
+                    password:document.getElementById('password').value,
+                };
+                await fetch(BASE, {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify(body)
+            });
+                load();
+            }
+
+            async function editItem(id){
+                const site=prompt('New site:');
+                const username=prompt('New username:');
+                const password=prompt('New password');
+                await fetch(BASE + '/' + id, {
+                    method:'PUT',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({site,
+                        username,
+                        password, })
+            });
+                load();
+            }
+
+            async function deleteItem(id) {
+                await fetch (BASE + '/' + id, {method:'DELETE'});
+                load();
+            }
+            load();
+        </script>
+    </body>
+</html>
